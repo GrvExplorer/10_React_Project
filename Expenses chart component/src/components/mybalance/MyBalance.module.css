@@ -1,0 +1,38 @@
+.layout {
+  display: flex;
+  padding: 27px 39px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  border-radius: 20px;
+  background: #ec755d;
+}
+
+.resize1 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.resize2 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+@media (max-width: 375px) {
+  .layout {
+    padding: 15px;
+  }
+  .resize1 {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .resize2 {
+    font-size: 21px;
+    font-weight: 800;
+  }
+}

@@ -1,0 +1,30 @@
+.body {
+  height: 100%;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  padding: 36px 32px 27px 31px;
+}
+
+.spending {
+  color: #000;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+
+@media (min-width: 375px) {
+ .spending {
+  font-size: 20px;
+  font-weight: 600;
+ }
+ .body {
+  padding: 20px;
+  height: auto;
+ }
+ 
+}

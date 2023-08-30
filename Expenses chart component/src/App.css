@@ -1,0 +1,32 @@
+@import url(https://fonts.google.com/specimen/DM+Sans);
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Delicious Handrawn', cursive;
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #F7E9DC;
+}
+
+.expensesChartBody {
+  width: 490px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px
+}
+
+@media (max-width: 375px) {
+  
+  .expensesChartBody {
+    width: 320px;
+    padding-top: 85px;
+  }
+
+}
+
