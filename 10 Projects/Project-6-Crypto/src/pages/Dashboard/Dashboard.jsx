@@ -1,23 +1,25 @@
-import Sidenav from "../../components/Sidenav";
-import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
-import TopBar from "../../components/TopBar";
-import DashboardLay from "../../components/DashboardLay";
+import { Flex } from "@chakra-ui/react";
+import CurrentPrice from "../../components/dashboard/CurrentPrice";
+import DashboardLay from "../../components/dashboard/PortfolioValue";
+import RecentTransaction from "../../components/dashboard/RecentTransaction";
 
 function Dashboard() {
   return (
-    <div>
-      <Box as="header">
-        <Flex bg="#F3F3F7">
-          <Sidenav />
-          <Box flexGrow={1} display={"flex"} flexDir={"column"} gap="24px">
-            <Box bg="white">
-              <TopBar />
-            </Box>
-            <DashboardLay />
-          </Box>
+    <>
+      <Flex
+        px={[20, 20, 10, 10, 0]}
+        maxW={"1024px"}
+        mx={"auto"}
+        className="w-full flex-col  gap-6"
+      >
+        <DashboardLay />
+        <Flex className="justify-between">
+          <CurrentPrice />
+
+          <RecentTransaction />
         </Flex>
-      </Box>
-    </div>
+      </Flex>
+    </>
   );
 }
 
