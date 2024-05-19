@@ -42,7 +42,7 @@ function CurrentPrice() {
         >
           <HStack justifyContent={"space-between"} className="w-full">
             <Box>
-              <Text color={"#535D66"} fontSize={"14px"} fodntWeight={"medium"}>
+              <Text color={"#535D66"} fontSize={"14px"} fontWeight={"medium"}>
                 Current Price
               </Text>
               <HStack>

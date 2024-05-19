@@ -1,9 +1,13 @@
 import { Box, Heading, Icon, Stack, Text } from "@chakra-ui/react";
 import { BiSupport } from "react-icons/bi";
 import { MdAttachMoney, MdOutlineDashboardCustomize } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 function Sidenav() {
+
+const {pathname} = useLocation()
+
+
   const navLink = [
     {
       Icon: MdOutlineDashboardCustomize,
@@ -12,10 +16,11 @@ function Sidenav() {
     },
     {
       Icon: MdAttachMoney,
-      Text: "Transaction",
-      Link: "/transaction",
+      Text: "Transactions",
+      Link: "/transactions",
     },
   ];
+
 
   return (
     <Box
@@ -60,8 +65,10 @@ function Sidenav() {
                 gap={4}
                 px={4}
                 py={3}
-                color={"#797E82"}
+                color={`${pathname==v.Link ? '#171717': '#797E82'}`}
+                bg={`${pathname==v.Link ? '#F3F3F7': ''}`}
                 boxShadow={"sm"}
+
                 _hover={{
                   bg: "#F3F3F7",
                   color: "#171717",
@@ -85,9 +92,10 @@ function Sidenav() {
             px={4}
             py={3}
             boxShadow={"sm"}
-            color={"#797E82"}
+            color={`${pathname=='/support' ? '#171717': '#797E82'}`}
+            bg={`${pathname=='/support' ? '#F3F3F7': ''}`}
             _hover={{
-              bg: "#F3F3F7",
+              bg: "#",
               color: "#171717",
             }}
           >

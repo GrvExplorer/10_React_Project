@@ -11,8 +11,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { RxAvatar } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 
 function TopBar() {
+  const { pathname } = useLocation();
+
   return (
     <Box h="86px">
       <HStack
@@ -22,14 +25,27 @@ function TopBar() {
         justifyContent={"space-between"}
         h={"full"}
       >
-        <Text fontSize={"28px"} letterSpacing={"1px"} fontWeight={"bold"}>
-          Dashboard
+        <Text
+          fontSize={"28px"}
+          letterSpacing={"1px"}
+          fontWeight={"bold"}
+          className="capitalize"
+        >
+          {pathname.split("/")}
+          {pathname == "/" ? "Dashboard" : ""}
         </Text>
         <Menu>
           <MenuButton as={Button}>
             <Icon fontSize={"40px"} as={RxAvatar} />
           </MenuButton>
-          <MenuList bg="black" w="40" p="4px" maxW={"1024px"} mx="auto">
+          <MenuList
+            zIndex={"10"}
+            bg="black"
+            w="40"
+            p="4px"
+            maxW={"1024px"}
+            mx="auto"
+          >
             <MenuItem
               color="white"
               p="12px"
