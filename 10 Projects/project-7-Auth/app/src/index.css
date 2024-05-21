@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hight_dash {
+  height: calc(100vh - 8px);
+}
+
+

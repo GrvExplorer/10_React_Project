@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --red: #d01c28;
+  --gray: #2e2e2e;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+li {
+  list-style: none
+}
+
+button {
+  background-color: var(--red);
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 16px;
+  color: white;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+main {
+  text-align: center;
+  vertical-align: center;
+  line-height: 100vh
+}
+
+
+/* Main CSS  */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 82px 0px 82px;
+  height: 72px;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  gap: 24px;
+}
+
+.button {
+  display: flex;
+}
+
+.logo img {
+  width: 72px;
+  height: 42px;
+}
+
+.heroSection {
+  display: flex;
+  margin: 80px auto;
+  width: 1100px;
+}
+
+.heroSection .first {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  gap: 32px;
+}
+
+.heroSection .title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 108px;
+  line-height: 102px;
+  text-transform: uppercase;
+}
+
+.discription {
+  font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+color: #5A5959;
+  margin-right: 191px;
+}
+
+.heroImages {
+  display:flex;
+  gap: 16px;
+}
+
+.heroImages img {
+  width: 32px;
+height: 32px;
+}
+
+.heroButtons {
+  display: flex;
+  font-size: 24px;
+  line-height: 29px;
+  gap: 40px;
+}
+
+.differentBtn {
+  background-color: white;
+  color: #5A5959;
+  border: 1px solid black;
+}
+
+.lastSen {
+  font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+
+/* GRAY */
+
+color: #5A5959;
+}
+
+.shoe {
+  height: 300px;
+  margin-top: 63px;
+}
+
+.shoe img{
+  width: 470px;
+  height: 427px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

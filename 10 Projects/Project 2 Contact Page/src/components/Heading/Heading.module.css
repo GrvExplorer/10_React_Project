@@ -1,0 +1,20 @@
+.heading {
+  padding: 50px 166px 2px 122px;
+}
+
+.heading h1 {
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 72px;
+}
+
+.heading p {
+  padding-top: 18px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #5a5959;
+}
