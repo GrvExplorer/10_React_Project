@@ -1,21 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../../authContext/AuthContextProvider";
 import { useSignin } from "../../../react query/mutations";
 
 function Login() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const { mutate, isSuccess } = useSignin()
+  const { mutate, isSuccess, isPending } = useSignin();
 
   const onSubmit = (data) => {
-    mutate(data)
-    console.log(isSuccess);
-    
-    if (isSuccess) { 
-      navigate('/')
-    }
+    mutate(data);
   };
 
   return (
@@ -29,7 +25,11 @@ function Login() {
             </p>
           </div>
 
-          <form action="" className="form-control" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            action=""
+            className="form-control"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col gap-6 ">
               {/* Email */}
               <div className="flex flex-col gap-2">
@@ -80,6 +80,7 @@ function Login() {
               {/* Login button */}
               <div className="flex flex-col gap-3">
                 <button
+                disabled={isPending}
                   type="submit"
                   className="btn btn-active w-full text-Gray"
                 >

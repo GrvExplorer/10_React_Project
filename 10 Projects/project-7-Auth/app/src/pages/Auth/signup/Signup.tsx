@@ -7,6 +7,7 @@ import { useSignup } from "../../../react query/mutations";
 
 function Signup() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('')
 
   const {
     register,
@@ -24,16 +25,18 @@ function Signup() {
     setPassVis(!passVis);
   };
   
-  const { isError , mutate , isSuccess} = useSignup();
+  const { isError , mutate , isSuccess, isPending} = useSignup();
 
 
   const onSubmit = (data) => {
     mutate(data);
-    if (!isError) {
-      navigate(`/auth/email`, { state: data.email});
-    }
+    setEmail(data.email)
   };
-
+  
+  if (isSuccess) {
+    navigate(`/auth/email`, { state: email });
+  }
+  
   return (                   
     <div className="flex h-screen items-center justify-center">
       <div className="rounded-lg bg-White p-6 shadow-lg">
@@ -157,10 +160,12 @@ function Signup() {
 
             <div className="">
               <button
+              disabled={isPending}
                 type="submit"
                 className="btn btn-ghost w-full bg-Purple text-white"
               >
-                Create Account
+
+                { isPending ? 'Loading...': 'Create Account'}
               </button>
               <p
                 onClick={() => navigate("/auth/login")}

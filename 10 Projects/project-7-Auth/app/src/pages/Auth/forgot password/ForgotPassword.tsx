@@ -1,5 +1,5 @@
 import { ErrorMessage } from "@hookform/error-message";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -19,14 +19,17 @@ function ForgotPassword() {
 
   const onSubmit = (data) => {
     mutate(data.email);
-    if (isSuccess) {
-      setSend(true);
-      setEmail(data.email);
-    }
+    setEmail(data.email);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      setSend(true);
+    }
+  }, [isSuccess, mutate]) 
+
   return (
-    <div className=" ">
+    <div className="">
       {isSend ? (
         <div className="flex h-screen items-center justify-center">
           <div className="w-[488px] rounded-lg bg-White p-6 shadow-xl">

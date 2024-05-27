@@ -19,11 +19,10 @@ import NotFound from "./pages/not-found";
 function App() {
   const queryClient = new QueryClient();
 
-  useEffect(() => {}, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
+      {/* Private Route */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
@@ -31,6 +30,7 @@ function App() {
           <Route path="/support" element={<Support />} />
         </Route>
 
+        {/* Public Route */}
         <Route path="/auth" element={<AuthLayout />}>
           <Route index element={<Signup />} />
           <Route path="/auth/login" element={<Login />} />
@@ -40,7 +40,10 @@ function App() {
             element={<Verified />}
           />
           <Route path="/auth/forgot" element={<ForgotPassword />} />
-          <Route path="/auth/reset-password/:token" element={<ResetPassword />} />
+          <Route
+            path="/auth/reset-password/:token"
+            element={<ResetPassword />}
+          />
         </Route>
 
         <Route path="*" element={<NotFound />} />

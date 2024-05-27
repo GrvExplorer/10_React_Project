@@ -1,6 +1,6 @@
 # Welcome! To 👋 Crypto Dashboard
     
-  <p align="left"> <a href="" target="_blank" rel="noreferrer"> <img src="" alt="banner" /></a> </p>
+  <p align="left"> <a href="" target="_blank" rel="noreferrer"> <img src="./public//banner.png" alt="banner" /></a> </p>
 
 # My Social medial
 
@@ -13,14 +13,21 @@
 # My Learning 
  
   ### Further development
-  - Support Dashboard
+  - CurrentPrice component (time fix)
+  - Learn about Cookies and JWT Authentication
+  - Toast Message ( Feedback to Response )
+  - Form Validation UI Improve 
+  - Theme using Daisyui
 
   ### My Progress 
-
-  ### TODO's
+  - Support Dashboard
   - Main Dashboard
   - Transaction Dashboard
-  - CurrentPrice component (time fix)
+  - Authentication using JWT 
+  - Authorization using cookies
+  - Verifying Email And Forgot Password 
+
+  ### TODO's
 
 # Acknowledgments
 [Do Some Coding]("https://www.https://www.youtube.com/@dosomecoding")

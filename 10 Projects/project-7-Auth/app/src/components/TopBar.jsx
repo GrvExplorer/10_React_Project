@@ -12,9 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { RxAvatar } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
+import { useAuthContext } from "../authContext/AuthContextProvider";
 
 function TopBar() {
   const { pathname } = useLocation();
+  const { logout } = useAuthContext()
 
   return (
     <Box h="86px">
@@ -53,6 +55,7 @@ function TopBar() {
                 bg: "white",
                 color: "black",
               }}
+              onClick={() => logout()}
             >
               Logout
             </MenuItem>

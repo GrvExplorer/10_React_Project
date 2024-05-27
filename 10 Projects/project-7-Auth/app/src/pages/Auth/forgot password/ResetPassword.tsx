@@ -1,5 +1,5 @@
 import { ErrorMessage } from "@hookform/error-message";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FieldValue, FieldValues, useForm } from "react-hook-form";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,14 +20,19 @@ function ResetPassword() {
     formState: { errors },
   } = useForm();
 
-  const { mutate , isSuccess} = useVerifyResetPassword();
+  const { mutate , isSuccess, isPending} = useVerifyResetPassword();
 
-  function onSubmit(data: FieldValue<FieldValues>) {
+ function onSubmit(data: FieldValue<FieldValues>) {
     mutate({ token, password: data.password });
-    if(isSuccess) { 
-      setReseated(true)
-    }
   }
+
+useEffect(() => {
+  if (isSuccess){
+    setReseated(true)
+    console.log('success password change!');
+  }
+}, [isSuccess, mutate])
+
 
   const handleVisibility = () => {
     setPassVis(!passVis);
@@ -120,7 +125,9 @@ function ResetPassword() {
                 </div>
 
                 {/* Reset button */}
-                <button type="submit" className="btn btn-active w-full">
+                <button 
+                disabled={isPending}
+                type="submit" className="btn btn-active w-full">
                   Reset Password
                 </button>
               </form>

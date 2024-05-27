@@ -9,21 +9,23 @@ import {
   signup,
   verifyResetPassword,
 } from "../api/axios";
+import { useAuthContext } from "../authContext/AuthContextProvider";
 
 export const useSignup = () => {
-  const queryClient = useQueryClient()
+  const navigate = useNavigate();
+
   return useMutation({
     mutationFn: signup,
     mutationKey: ["SIGNUP"],
-    onSuccess: () => {
-    }
+    onSuccess: (data) => {
+    },
   });
 };
 
 export const useSendVerification = () => {
   return useMutation({
     mutationFn: sendVerificationMail,
-    mutationKey: ["SEND_VERIFICATION"],
+    mutationKey: ["SEND_VERIFICATION_MAIL"],
   });
 };
 
@@ -36,11 +38,13 @@ export const useSendVerifiedToken = () => {
 
 export const useSignin = () => {
   const navigate = useNavigate();
+  const { login } = useAuthContext();
+
   return useMutation({
     mutationFn: signin,
     mutationKey: ["SIGNUP"],
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
+      login(data.token);
       navigate("/");
     },
   });
@@ -54,15 +58,9 @@ export const useSendForgotPasswordMail = () => {
 };
 
 export const useVerifyResetPassword = () => {
-  const navigate = useNavigate();
   return useMutation({
     mutationFn: verifyResetPassword,
     mutationKey: ["VERIFY_FORGOT_PASSWORD"],
-    onSuccess: () => {
-
-    },
+    onSuccess: () => {},
   });
-  
 };
-
-

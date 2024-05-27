@@ -11,7 +11,6 @@ function EmailVerification() {
     if (location.state) {
       mutate(location.state);
     }
-
   }, [mutate]);
 
   return (
