@@ -27,7 +27,7 @@ router.post(
   sendVerificationMail
 );
 
-router.post("/verfiy-user-mail", verifyUserMailValidation, verifyUserMail);
+router.post("/verifiy-user-mail", verifyUserMailValidation, verifyUserMail);
 
 router.post(
   "/verify-forgot-mail",

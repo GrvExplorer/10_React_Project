@@ -1,12 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useSignin } from "../../../react query/mutations";
 
 function Login() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = () => {};
+  const { mutate, isSuccess } = useSignin()
+
+  const onSubmit = (data) => {
+    mutate(data)
+    console.log(isSuccess);
+    
+    if (isSuccess) { 
+      navigate('/')
+    }
+  };
 
   return (
     <div>
@@ -19,7 +29,7 @@ function Login() {
             </p>
           </div>
 
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <form action="" className="form-control" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6 ">
               {/* Email */}
               <div className="flex flex-col gap-2">
@@ -27,7 +37,7 @@ function Login() {
                   Email
                 </label>
                 <input
-                  className="rounded-lg border px-3 py-2"      
+                  className="rounded-lg border px-3 py-2"
                   type="email"
                   placeholder="name@email.com"
                   {...register("email", { required: true })}
@@ -49,15 +59,15 @@ function Login() {
 
               {/* Remember me */}
               <div className="flex justify-between font-medium">
-                <div className="ml-1 flex gap-2">
-                  <input
-                    className="bg-Purple"
-                    type="checkbox"
-                    {...register("rememberMe", {
-                      required: true,
-                    })}
-                  />
-                  <label htmlFor="">Remember me</label>
+                <div className="">
+                  <label className="label ml-1 flex gap-2" htmlFor="">
+                    <input
+                      className="checked checkbox-primary"
+                      type="checkbox"
+                      {...register("rememberMe")}
+                    />
+                    <span className="label-text">Remember me</span>
+                  </label>
                 </div>
                 <p
                   onClick={() => navigate("/auth/forgot")}
@@ -75,7 +85,11 @@ function Login() {
                 >
                   Log In
                 </button>
-                <button type="button" onClick={() => navigate('/auth')} className="btn w-full">
+                <button
+                  type="button"
+                  onClick={() => navigate("/auth")}
+                  className="btn w-full"
+                >
                   Create Account
                 </button>
               </div>

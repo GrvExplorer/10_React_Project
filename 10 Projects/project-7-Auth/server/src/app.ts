@@ -1,18 +1,16 @@
-import express, { ErrorRequestHandler } from "express";
-import createHttpError from "http-errors";
-import exampleRoute from "./routes/exampleRoutes";
-import userRoute from "./routes/userRoutes";
-import mongoose from "mongoose";
-import { DB, PORT } from "./config";
-import { errorHandler } from "./middleware/errorHanlder";
-import passport from "passport";
-import kPassport from "./middleware/passport";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import express, { ErrorRequestHandler } from "express";
+import createHttpError from "http-errors";
+import mongoose from "mongoose";
+import passport from "passport";
+import { DB, PORT } from "./config";
+import { errorHandler } from "./middleware/errorHanlder";
+import kPassport from "./middleware/passport";
+import exampleRoute from "./routes/exampleRoutes";
+import userRoute from "./routes/userRoutes";
 const app = express();
-app.use(
-  cors({ origin: [process.env.FRONTEND_URL as string], credentials: true })
-);
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 app.use(cookieParser());
 

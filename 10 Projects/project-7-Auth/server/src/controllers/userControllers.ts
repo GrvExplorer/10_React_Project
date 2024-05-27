@@ -79,14 +79,12 @@ export const sendVerificationMail: RequestHandler = async (req, res, next) => {
     });
 
     let info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <anshuraj@dosomecoding.com>', // sender address
+      from: '"GrvExplorer@outlook.com 💜"', // sender address
       to: `${email}`, // list of receivers
       subject: "For Email Verification", // Subject line
       // text: "Hello world?", // plain text body
-      html: `Your Verification Link <a href="${FRONTEND_URL}/email-verify/${jwtToken}">Link</a>`, // html body
+      html: `Your Verification Link <a href="${FRONTEND_URL}/auth/email-verification-check/${jwtToken}">Link</a>`, // html body
     });
-
-    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
     await user.updateOne({ $set: { verifyToken: encryptedToken } });
     res.json({
@@ -135,11 +133,11 @@ export const sendForgotPasswordMail: RequestHandler = async (
     });
 
     let info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <anshuraj@dosomecoding.com>', // sender address
+      from: '"Fred Foo 👻"GrvExplorer@outlook.com', // sender address
       to: `${email}`, // list of receivers
       subject: "For Forgot Password Verification Mail", // Subject line
       // text: "Hello world?", // plain text body
-      html: `Your Verification for forgot password Link <a href="${FRONTEND_URL}/forgot-password-verify/${jwtToken}">Link</a>`, // html body
+      html: `Your Verification for forgot password Link <a href="${FRONTEND_URL}/auth/reset-password/${jwtToken}">Link</a>`, // html body
     });
 
     // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
@@ -153,6 +151,7 @@ export const sendForgotPasswordMail: RequestHandler = async (
     return next(InternalServerError);
   }
 };
+
 export const verifyForgotMail: RequestHandler = async (req, res, next) => {
   const { token, password }: { token: string; password: string } = req.body;
 

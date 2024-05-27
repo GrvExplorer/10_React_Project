@@ -2,10 +2,16 @@ import { ErrorMessage } from "@hookform/error-message";
 import React, { useState } from "react";
 import { FieldValue, FieldValues, useForm } from "react-hook-form";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { useNavigate, useParams } from "react-router-dom";
+import { useVerifyResetPassword } from "../../../react query/mutations";
 
 function ResetPassword() {
-  const [reseated, setReseated] = useState(true);
+
+  const navigate = useNavigate()
+
+  const [reseated, setReseated] = useState(false);
   const [passVis, setPassVis] = useState(false);
+  const { token } = useParams();
 
   const {
     register,
@@ -14,7 +20,15 @@ function ResetPassword() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data: FieldValue<FieldValues>) {}
+  const { mutate , isSuccess} = useVerifyResetPassword();
+
+  function onSubmit(data: FieldValue<FieldValues>) {
+    mutate({ token, password: data.password });
+    if(isSuccess) { 
+      setReseated(true)
+    }
+  }
+
   const handleVisibility = () => {
     setPassVis(!passVis);
   };
@@ -37,7 +51,9 @@ function ResetPassword() {
                   </p>
                 </div>
 
-                <button className="btn w-full bg-Purple font-medium text-white">
+                <button 
+                 onClick={() => navigate('/auth/login')}
+                className="btn w-full bg-Purple font-medium text-white">
                   Sign In
                 </button>
               </div>
@@ -61,7 +77,7 @@ function ResetPassword() {
                 {/* Password */}
                 <div className="flex flex-col gap-2">
                   <label htmlFor="" className="font-medium">
-                    Password
+                    New Password
                   </label>
                   <input
                     className="rounded-lg border px-3 py-2"

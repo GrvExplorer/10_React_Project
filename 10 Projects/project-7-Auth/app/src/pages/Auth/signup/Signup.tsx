@@ -1,10 +1,13 @@
 import { ErrorMessage } from "@hookform/error-message";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useSignup } from "../../../react query/mutations";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -15,20 +18,23 @@ function Signup() {
     watch,
   } = useForm();
 
-  const navigate = useNavigate();
-
   const [passVis, setPassVis] = useState(false);
   const [termsConditions, setTermsConditions] = useState(false);
   const handleVisibility = () => {
     setPassVis(!passVis);
   };
+  
+  const { isError , mutate , isSuccess} = useSignup();
+
 
   const onSubmit = (data) => {
-    console.log(data);
-    navigate("/auth/email");
+    mutate(data);
+    if (!isError) {
+      navigate(`/auth/email`, { state: data.email});
+    }
   };
 
-  return (
+  return (                   
     <div className="flex h-screen items-center justify-center">
       <div className="rounded-lg bg-White p-6 shadow-lg">
         <div className="mb-10 flex flex-col gap-4">
@@ -70,6 +76,7 @@ function Signup() {
               <input
                 className="rounded-lg border px-3 py-2"
                 type="email"
+                autoComplete=""
                 placeholder="name@email.com"
                 {...register("email", { required: true })}
               />
@@ -82,6 +89,7 @@ function Signup() {
                 className="rounded-lg border px-3 py-2"
                 type="password"
                 placeholder="password"
+                autoComplete="new-password"
                 {...register("password", { required: true })}
               />
             </div>
@@ -94,6 +102,7 @@ function Signup() {
                   className="w-full rounded-lg px-3  py-1 focus:outline-none"
                   type={passVis ? "text" : "password"}
                   placeholder="confirm password"
+                  autoComplete="new-password"
                   {...register("ConfirmPassword", {
                     required: true,
                     validate: (v) => {
@@ -120,7 +129,7 @@ function Signup() {
             <div className="">
               <div className="ml-1 flex gap-2">
                 <input
-                  className="cursor-pointer"
+                  className="checked:bg-Purple cursor-pointer"
                   type="checkbox"
                   {...register("tac", {
                     required: {
@@ -133,7 +142,7 @@ function Signup() {
                 <label
                   htmlFor=""
                   onClick={() => {
-                    setValue('tac', !getValues('tac'))
+                    setValue("tac", !getValues("tac"));
                   }}
                   className="cursor-pointer"
                 >

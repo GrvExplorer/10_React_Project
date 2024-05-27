@@ -3,18 +3,26 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useSendForgotPasswordMail } from "../../../react query/mutations";
 
 function ForgotPassword() {
   const navigate = useNavigate();
   const [isSend, setSend] = useState(false);
+  const [email, setEmail] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {
-    navigate("/auth/reset-password");
+  const { mutate, isSuccess, isPending } = useSendForgotPasswordMail();
+
+  const onSubmit = (data) => {
+    mutate(data.email);
+    if (isSuccess) {
+      setSend(true);
+      setEmail(data.email);
+    }
   };
 
   return (
@@ -28,11 +36,8 @@ function ForgotPassword() {
               <div className="text-center">
                 <p className="mb-4 text-2xl font-medium">Successfully Sent</p>
                 <p className="w-[400px] font-normal text-Gray">
-                  We have sent instructions on how to reset your password to
-                  <span className="font-medium text-black">
-                    {" "}
-                    jenny.wilson@gmail.com.{" "}
-                  </span>
+                  We have sent instructions on how to reset your password to{" "}
+                  <span className="font-medium text-black">{email}.</span>{" "}
                   Please follow the instructions from the email.
                 </p>
               </div>
@@ -75,15 +80,18 @@ function ForgotPassword() {
                         },
                       })}
                     />
-                    <div className="text-red-500 pl-1 pt-1">
+                    <div className="pl-1 pt-1 text-red-500">
                       <ErrorMessage errors={errors} name="email" />
                     </div>
                   </div>
-                <button type="submit" className="btn btn-active w-full">
-                  Reset Password
-                </button>
+                  <button
+                    disabled={isPending}
+                    type="submit"
+                    className="btn btn-active w-full"
+                  >
+                    {isPending ? "Loading..." : "Reset Password"}
+                  </button>
                 </form>
-
               </div>
             </div>
           </div>
